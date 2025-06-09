@@ -3,50 +3,51 @@
   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+
+  <!-- (A) 프로파일 메타데이터 --------------------------------------------------- -->
+  <key>PayloadDisplayName</key>       <string>SK Telecom</string>
+  <key>PayloadIdentifier</key>        <string>watarusuzuki.github.io.apn-profile</string>
+  <key>PayloadRemovalDisallowed</key> <false/>
+  <key>PayloadType</key>              <string>Configuration</string>
+  <key>PayloadUUID</key>              <string>f9dbd18b-90ff-58c1-8605-5abae9c50691</string>
+  <key>PayloadVersion</key>           <integer>1</integer>
+
+  <!-- (B) 셀룰러/APN 페이로드 -------------------------------------------------- -->
   <key>PayloadContent</key>
   <array>
     <dict>
-      <!-- (A) 셀룰러/APN 페이로드 -->
-      <key>PayloadType</key>         <string>com.apple.cellular</string>
-      <key>PayloadUUID</key>         <string>0bb0b256-e4d0-4851-98d9-5c2fb19f3e20</string>
-      <key>PayloadVersion</key>      <integer>1</integer>
-      <key>PayloadDisplayName</key>  <string>SKT 5G Hotspot</string>
+      <key>PayloadDisplayName</key> <string>SK Telecom</string>
+      <!-- **중복 오류 방지를 위해 Identifier 새로 지정** -->
+      <key>PayloadIdentifier</key>  <string>watarusuzuki.github.io.apn-profile.cellular</string>
+      <key>PayloadType</key>        <string>com.apple.cellular</string>
+      <key>PayloadUUID</key>        <string>8e0b1a34-4d52-4c15-9aad-3c7f0d20e9f9</string>
+      <key>PayloadVersion</key>     <integer>1</integer>
+      <key>PayloadDescription</key> <string>From SK Telecom</string>
 
-      <!-- 1) 기본·데이터 APN -->
+      <!-- 1) 데이터/기본 APN -->
       <key>APNs</key>
       <array>
         <dict>
-          <key>Name</key>                <string>5g.sktelecom.com</string>
-          <key>AuthenticationType</key>  <string>CHAP</string>
+          <key>Name</key>               <string>5g.sktelecom.com</string>
+          <key>AuthenticationType</key> <string>CHAP</string>
 
-          <!-- IPv4(1) + IPv6(2) = 3 -->
+          <!-- iOS 18.x 필수: 프로토콜 마스크 -->
+          <!-- 3 = IPv4 + IPv6 -->
           <key>AllowedProtocolMask</key>            <integer>3</integer>
           <key>AllowedProtocolMaskInRoaming</key>   <integer>3</integer>
           <key>DefaultProtocolMask</key>            <integer>3</integer>
-
-          <!-- IPv6-only 망에서 NAT64 필요 시 주석 해제
-          <key>EnableXLAT464</key>        <true/>
-          -->
         </dict>
       </array>
 
       <!-- 2) Attach/Tethering APN -->
       <key>AttachAPN</key>
       <dict>
-        <key>Name</key>                <string>5g.sktelecom.com</string>
-        <key>AuthenticationType</key>  <string>CHAP</string>
+        <key>Name</key>               <string>5g.sktelecom.com</string>
+        <key>AuthenticationType</key> <string>CHAP</string>
         <key>AllowedProtocolMask</key> <integer>3</integer>
       </dict>
     </dict>
   </array>
 
-  <!-- (B) 최상위 메타데이터 -->
-  <key>PayloadIdentifier</key>        <string>watarusuzuki.github.io.apn-profile.fixed</string>
-  <key>PayloadRemovalDisallowed</key> <false/>
-  <key>PayloadType</key>              <string>Configuration</string>
-  <key>PayloadUUID</key>              <string>ea022980-b9dd-4f13-bce6-b19adf1d3df5</string>
-  <key>PayloadVersion</key>           <integer>1</integer>
-  <key>PayloadDisplayName</key>       <string>SK Telecom 5G Hotspot Profile</string>
-  <key>PayloadDescription</key>       <string>Updated APN profile for unlimited hotspot on SK Telecom 5G.</string>
 </dict>
 </plist>
